@@ -1,1 +1,1 @@
-# CSC365Lab1
+# CSC365 Lab1
