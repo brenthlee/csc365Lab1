@@ -12,25 +12,55 @@ TLNAME = 6
 TFNAME = 7
 
 # data_dict = {}
-legalCommands = ['S', 'Student' 'T', 'Teacher', 'B', 'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info',]
+legalCommands = ['S', 'Student', 'T', 'Teacher', 'B', 'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info',]
 
 
 def printStudent(args, data):
 
     # need to check for null
-    lname = args[0].strip()
+    bus = 0
+    if not args:
+        return
+
+    checkbus = args[0].split()
+    print(checkbus)
+
+    if ( len(checkbus) > 1 and (checkbus[1] == 'B' or checkbus[1] == 'Bus')):
+        bus = 1
+        lname = checkbus[0]
+    else:
+        lname = args[0].strip()
 
 
     students = []
     for i in range(len(data)):
-        if (lname == data[i][0]):
+        if (lname == data[i][LNAME]):
             students.append(i)
-    
-    for student in students:
-        print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]) + ',' + str(data[student][GRADE]) + ',' +  str(data[student][CLSSRM]) + ',' + str(data[student][TLNAME]) + ',' + str(data[student][TFNAME]))
+    if (bus == 1):
+        for student in students:
+            print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]) + ',' + str(data[student][BUS]))
+    else:
+        for student in students:
+            print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]) + ',' + str(data[student][GRADE]) + ',' +  str(data[student][CLSSRM]) + ',' + str(data[student][TLNAME]) + ',' + str(data[student][TFNAME]))
     return
 
 def printTeacher(args, data):
+
+
+    if not args:
+        return
+
+    tname = args[0].strip()
+
+    students = []
+    for i in range(len(data)):
+        if (tname == data[i][TLNAME]):
+            students.append(i)
+
+    for student in students:
+        print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]))
+
+
     return
 
 def parse_command(inpt, data):
@@ -47,7 +77,7 @@ def parse_command(inpt, data):
         printStudent(args, data)
 
     elif (command == 'T' or command == 'Teacher'):
-        printTeacher(args)
+        printTeacher(args, data)
 
     # etc etc, keep fillling in
     return
