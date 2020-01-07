@@ -1,6 +1,6 @@
-#Henry Luengas
-#Ryan Nevils
-#Brent Lee
+# Henry Luengas
+# Ryan Nevils
+# Brent Lee
 
 LNAME = 0
 FNAME = 1
@@ -12,8 +12,67 @@ TLNAME = 6
 TFNAME = 7
 
 # data_dict = {}
-legalCommands = ['S', 'Student', 'T', 'Teacher', 'B', 'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info',]
+legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
+                 'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info', ]
 
+# S[tudent]:  <lastname> [B[us]]
+# T[eacher]:  <lastname>
+# B[us]:  <number>
+# G[rade]:  <number> [H[igh]|L[ow]]
+# A[verage]:  <number>
+# I[nfo]
+# Q[uit]
+
+
+def parse_command(inpt, data):
+    # figure out what command it is, then run appropriate command
+
+    command, *args = inpt.split(':')
+
+    if command not in legalCommands:
+        print("not a valid command!")
+        return
+
+    if (command == 'S' or command == 'Student'):
+        printStudent(args, data)
+
+    elif (command == 'T' or command == 'Teacher'):
+        printTeacher(args, data)
+
+    elif (command == 'B' or command == 'Bus'):
+        printBus(args, data)
+
+    # etc etc, keep fillling in
+
+
+def main():
+
+    with open("students.txt") as f:
+        data_list = [[val.strip() for val in r.split(",")]
+                     for r in f.readlines()]
+
+    # for row in data_list:
+    #     key, *values = row
+    #     data_dict[key] = row
+
+    inpt = input("> ")
+    while (inpt != 'Q'):
+        parse_command(inpt, data_list)
+        inpt = input("> ")
+
+
+# data structure
+# dictionary "data" {ID# : [infoList]}
+# We were going to do {Lastname : [infoList]} but the key needs to be unique... so thats not going to work.
+
+
+# S[tudent]: <lastname> [B[us]]
+
+# Search the contents of the students.txt file for the entry (or entries) for students with
+# the given last name.
+
+# For each entry found, print the last name, first name, grade and classroom assignment for
+# each student found and the name of their teacher (last and first name).
 
 def printStudent(args, data):
 
@@ -25,12 +84,11 @@ def printStudent(args, data):
     checkbus = args[0].split()
     print(checkbus)
 
-    if ( len(checkbus) > 1 and (checkbus[1] == 'B' or checkbus[1] == 'Bus')):
+    if (len(checkbus) > 1 and (checkbus[1] == 'B' or checkbus[1] == 'Bus')):
         bus = 1
         lname = checkbus[0]
     else:
         lname = args[0].strip()
-
 
     students = []
     for i in range(len(data)):
@@ -38,14 +96,23 @@ def printStudent(args, data):
             students.append(i)
     if (bus == 1):
         for student in students:
-            print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]) + ',' + str(data[student][BUS]))
+            print(str(data[student][LNAME]) + ',' +
+                  str(data[student][FNAME]) + ',' + str(data[student][BUS]))
     else:
         for student in students:
-            print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]) + ',' + str(data[student][GRADE]) + ',' +  str(data[student][CLSSRM]) + ',' + str(data[student][TLNAME]) + ',' + str(data[student][TFNAME]))
-    return
+            print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]) + ',' + str(data[student][GRADE]) +
+                  ',' + str(data[student][CLSSRM]) + ',' + str(data[student][TLNAME]) + ',' + str(data[student][TFNAME]))
+# ###########################################################################################
+
+# T[eacher]: <lastname>
+
+# Search the contents of the students.txt file for the entry (or entries) for students with
+# the given last name.
+
+# For each entry found, print the last name, first name and the bus route the student takes.
+
 
 def printTeacher(args, data):
-
 
     if not args:
         return
@@ -58,76 +125,7 @@ def printTeacher(args, data):
             students.append(i)
 
     for student in students:
-        print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]))
-
-
-    return
-
-def parse_command(inpt, data):
-    # figure out what command it is, then run appropriate command
-
-
-    command, *args = inpt.split(':')
-
-    if command not in legalCommands:
-        print ("not a valid command!")
-        return
-
-    if (command == 'S' or command == 'Student'):
-        printStudent(args, data)
-
-    elif (command == 'T' or command == 'Teacher'):
-        printTeacher(args, data)
-
-    # etc etc, keep fillling in
-    return
-
-
-
-def main():
-
-    with open("students.txt") as f:
-        data_list = [[val.strip() for val in r.split(",")] for r in f.readlines()]
-
-
-
-
-    # for row in data_list:
-    #     key, *values = row   
-    #     data_dict[key] = row
-
-
-    inpt = input("> ")
-    while (inpt != 'Q'):
-        parse_command(inpt, data_list)
-        inpt = input("> ")
-
-
-if __name__ == '__main__':
-    main()
-    
-# data structure
-# dictionary "data" {ID# : [infoList]}
-# We were going to do {Lastname : [infoList]} but the key needs to be unique... so thats not going to work.
-
-
-
-# S[tudent]: <lastname> [B[us]]
-
-# Search the contents of the students.txt file for the entry (or entries) for students with
-# the given last name.
-
-# For each entry found, print the last name, first name, grade and classroom assignment for
-# each student found and the name of their teacher (last and first name).
-
-# ###########################################################################################
-
-# T[eacher]: <lastname>
-
-# Search the contents of the students.txt file for the entry (or entries) for students with
-# the given last name.
-
-# For each entry found, print the last name, first name and the bus route the student takes.
+        print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]))
 # ###########################################################################################
 
 # B[us]: <number>
@@ -137,6 +135,22 @@ if __name__ == '__main__':
 
 # For each such entry, output the first and the last name of the student and their grade and
 # classroom.
+
+
+def printBus(args, data):
+    if not args:
+        return
+
+    busRoute = args[0].strip()
+
+    students = []
+    for i in range(len(data)):
+        if (busRoute == data[i][BUS]):
+            students.append(i)
+
+    for student in students:
+        print(str(data[student][FNAME]) + ',' + str(data[student][LNAME]) +
+              ',' + str(data[student][GRADE]) + ',' + str(data[student][CLSSRM]))
 # ###########################################################################################
 
 # G[rade]: <number> [H[igh]|L[ow]]
@@ -167,3 +181,7 @@ if __name__ == '__main__':
 
 # # Q[uit]
 # ###########################################################################################
+
+
+if __name__ == '__main__':
+    main()
