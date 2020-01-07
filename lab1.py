@@ -11,21 +11,19 @@ GPA = 5
 TLNAME = 6
 TFNAME = 7
 
-# data_dict = {}
 legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
                  'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info', ]
-
-# S[tudent]:  <lastname> [B[us]]
-# T[eacher]:  <lastname>
-# B[us]:  <number>
-# G[rade]:  <number> [H[igh]|L[ow]]
-# A[verage]:  <number>
-# I[nfo]
-# Q[uit]
 
 
 def parse_command(inpt, data):
     # figure out what command it is, then run appropriate command
+    # S[tudent]:  <lastname> [B[us]]
+    # T[eacher]:  <lastname>
+    # B[us]:  <number>
+    # G[rade]:  <number> [H[igh]|L[ow]]
+    # A[verage]:  <number>
+    # I[nfo]
+    # Q[uit]
 
     command, *args = inpt.split(':')
 
@@ -42,7 +40,7 @@ def parse_command(inpt, data):
     elif (command == 'B' or command == 'Bus'):
         printBus(args, data)
 
-    # etc etc, keep fillling in
+    # TODO etc etc, keep fillling in
 
 
 def main():
@@ -61,16 +59,9 @@ def main():
         inpt = input("> ")
 
 
-# data structure
-# dictionary "data" {ID# : [infoList]}
-# We were going to do {Lastname : [infoList]} but the key needs to be unique... so thats not going to work.
-
-
 # S[tudent]: <lastname> [B[us]]
-
 # Search the contents of the students.txt file for the entry (or entries) for students with
 # the given last name.
-
 # For each entry found, print the last name, first name, grade and classroom assignment for
 # each student found and the name of their teacher (last and first name).
 
@@ -105,10 +96,8 @@ def printStudent(args, data):
 # ###########################################################################################
 
 # T[eacher]: <lastname>
-
 # Search the contents of the students.txt file for the entry (or entries) for students with
 # the given last name.
-
 # For each entry found, print the last name, first name and the bus route the student takes.
 
 
@@ -129,10 +118,8 @@ def printTeacher(args, data):
 # ###########################################################################################
 
 # B[us]: <number>
-
 # Search the contents of the students.txt file for the entries where the bus route number
 # matches the number provided in the instruction.
-
 # For each such entry, output the first and the last name of the student and their grade and
 # classroom.
 
@@ -154,26 +141,20 @@ def printBus(args, data):
 # ###########################################################################################
 
 # G[rade]: <number> [H[igh]|L[ow]]
-
 # Search the contents of the students.txt file for the entries where the student’s grade
 # matches the number provided in the instruction.
-
 # For each entry, output the name (last and first) of the student.
 # ###########################################################################################
 
 # A[verage]: <number>
-
 # Search the contents of the students.txt file for the entries where the student’s grade
 # matches the number provided in the instruction.
-
 # Compute the average GPA score for the entries found. Output the grade level (the number
 # provided in command) and the average GPA score computed.
 # ###########################################################################################
 
 # I[nfo]
-
 # For each grade (from 0 to 6) compute the total number of students in that grade.
-
 # Report the number of students in each grade in the format
 # <Grade>: <Number of Students>
 # sorted in ascending order by grade.
