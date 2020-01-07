@@ -77,7 +77,8 @@ if __name__ == '__main__':
     main()
     
 # data structure
-# dictionary {lastName : [infoList]}
+# dictionary "data" {ID# : [infoList]}
+# We were going to do {Lastname : [infoList]} but the key needs to be unique... so thats not going to work.
 
 
 
@@ -88,6 +89,7 @@ if __name__ == '__main__':
 
 # For each entry found, print the last name, first name, grade and classroom assignment for
 # each student found and the name of their teacher (last and first name).
+
 # ###########################################################################################
 
 # T[eacher]: <lastname>
