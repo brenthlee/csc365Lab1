@@ -2,7 +2,76 @@
 #Ryan Nevils
 #Brent Lee
 
+LNAME = 0
+FNAME = 1
+GRADE = 2
+CLSSRM = 3
+BUS = 4
+GPA = 5
+TLNAME = 6
+TFNAME = 7
+
+# data_dict = {}
+legalCommands = ['S', 'Student' 'T', 'Teacher', 'B', 'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info',]
+
+
+def printStudent(args, data):
+
+    # need to check for null
+    lname = args[0].strip()
+
+
+    students = []
+    for i in range(len(data)):
+        if (lname == data[i][0]):
+            students.append(i)
+    
+    for student in students:
+        print(str(data[student][LNAME]) + ',' +  str(data[student][FNAME]) + ',' + str(data[student][GRADE]) + ',' +  str(data[student][CLSSRM]) + ',' + str(data[student][TLNAME]) + ',' + str(data[student][TFNAME]))
+    return
+
+def printTeacher(args, data):
+    return
+
+def parse_command(inpt, data):
+    # figure out what command it is, then run appropriate command
+
+
+    command, *args = inpt.split(':')
+
+    if command not in legalCommands:
+        print ("not a valid command!")
+        return
+
+    if (command == 'S' or command == 'Student'):
+        printStudent(args, data)
+
+    elif (command == 'T' or command == 'Teacher'):
+        printTeacher(args)
+
+    # etc etc, keep fillling in
+    return
+
+
+
 def main():
+
+    with open("students.txt") as f:
+        data_list = [[val.strip() for val in r.split(",")] for r in f.readlines()]
+
+
+
+
+    # for row in data_list:
+    #     key, *values = row   
+    #     data_dict[key] = row
+
+
+    inpt = input("> ")
+    while (inpt != 'Q'):
+        parse_command(inpt, data_list)
+        inpt = input("> ")
+
 
 if __name__ == '__main__':
     main()
