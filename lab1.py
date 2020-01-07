@@ -12,7 +12,7 @@ TLNAME = 6
 TFNAME = 7
 
 legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
-                 'Bus' 'G', 'Grade', 'A', 'Average', 'I', 'Info', ]
+                 'Bus', 'G', 'Grade', 'A', 'Average', 'I', 'Info', 'Q', 'Quit']
 
 
 def parse_command(inpt, data):
@@ -39,6 +39,9 @@ def parse_command(inpt, data):
 
     elif (command == 'B' or command == 'Bus'):
         printBus(args, data)
+
+    elif (command == 'G' or command == 'Grade'):
+        printGrade(args, data)
 
     # TODO etc etc, keep fillling in
 
@@ -144,6 +147,41 @@ def printBus(args, data):
 # Search the contents of the students.txt file for the entries where the student’s grade
 # matches the number provided in the instruction.
 # For each entry, output the name (last and first) of the student.
+
+def printGrade(args, data):
+    if not args:
+        return
+
+    grade = args[0].split()[0].strip()
+    sort = args[0].split()[1].strip()
+
+    students = []
+    for i in range(len(data)):
+        if (grade == data[i][GRADE]):
+            students.append(i)
+
+    if (sort.upper() == "H" or sort.upper() == "HIGH"):
+        max = 0.0
+        maxStudent = 0
+
+        for student in students:
+            if (float(data[student][GPA]) > float(max)):
+                max = float(data[student][GPA])
+                maxStudent = student
+
+        print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]))
+
+
+    elif (sort.upper() == "L" or sort.upper() == "LOW"):
+        min = 4.0
+        minStudent = 0
+
+        for student in students:
+            if (float(data[student][GPA]) < float(min)):
+                min = float(data[student][GPA])
+                minStudent = student
+
+        print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]))
 # ###########################################################################################
 
 # A[verage]: <number>
