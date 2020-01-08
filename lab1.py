@@ -25,7 +25,7 @@ def parse_command(inpt, data):
     # I[nfo]
     # Q[uit]
 
-    command, args = inpt.split(':')
+    command, *args = inpt.split(':')
 
     if command not in legalCommands:
         print("not a valid command!")
@@ -60,7 +60,7 @@ def main():
     #     data_dict[key] = row
 
     inpt = input("> ")
-    while (inpt != 'Q' or inpt != 'Quit'):
+    while (inpt != 'Q' and inpt != 'Quit'):
         parse_command(inpt, data_list)
         inpt = input("> ")
     print("See you next time!")
@@ -205,10 +205,13 @@ def printAverage(args, data):
             students.append(i)
 
     ave = 0.0
+    if (len(students) == 0):
+        print('There are no students in grade ' + str(grade))
+        return
     for student in students:
-        ave = ave + data[student][GPA]
+        ave = ave + round(float(data[student][GPA]),2)
     ave = ave / len(students)
-    print('Grade ' + grade + ': ' + ave)
+    print('Grade ' + str(grade) + ': ' + str(round(ave,2)))
 
 # I[nfo]
 # For each grade (from 0 to 6) compute the total number of students in that grade.
@@ -221,21 +224,21 @@ def printInfo(args, data):
     if args:
         return
 
-    students = [0] * 6
+    students = [0] * 7
     for i in range(len(data)):
-        students[data[i][GRADE])] = students[data[i][GRADE]] + 1
+        students[int(data[i][GRADE])] = students[int(data[i][GRADE])] + 1
 
     for i in range(len(students)):
         if (i == 0):
-            print('Kindergarden: ' + students[i])
+            print('Kindergarden: ' + str(students[i]))
         elif (i == 1):
-            print('1st Grade: ' + students[i])
+            print('1st Grade: ' + str(students[i]))
         elif (i == 2):
-            print('2nd Grade: ' + students[i])
+            print('2nd Grade: ' + str(students[i]))
         elif (i == 3):
-            print('3rd Grade: ' + students[i])
+            print('3rd Grade: ' + str(students[i]))
         else:
-            print(i + 'th Grade: ' + students[i])
+            print(str(i) + 'th Grade: ' + str(students[i]))
 
 if __name__ == '__main__':
     main()
