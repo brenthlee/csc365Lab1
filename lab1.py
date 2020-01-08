@@ -25,7 +25,7 @@ def parse_command(inpt, data):
     # I[nfo]
     # Q[uit]
 
-    command, *args = inpt.split(':')
+    command, args = inpt.split(':')
 
     if command not in legalCommands:
         print("not a valid command!")
@@ -43,11 +43,14 @@ def parse_command(inpt, data):
     elif (command == 'G' or command == 'Grade'):
         printGrade(args, data)
 
-    # TODO etc etc, keep fillling in
+    elif (command == 'A' or command == 'Average'):
+        printAverage(args, data)
+
+    elif (command == 'I' or command == 'Info'):
+        printInfo(args, data)
 
 
 def main():
-
     with open("students.txt") as f:
         data_list = [[val.strip() for val in r.split(",")]
                      for r in f.readlines()]
@@ -57,9 +60,10 @@ def main():
     #     data_dict[key] = row
 
     inpt = input("> ")
-    while (inpt != 'Q'):
+    while (inpt != 'Q' or inpt != 'Quit'):
         parse_command(inpt, data_list)
         inpt = input("> ")
+    print("See you next time!")
 
 
 # S[tudent]: <lastname> [B[us]]
@@ -69,7 +73,6 @@ def main():
 # each student found and the name of their teacher (last and first name).
 
 def printStudent(args, data):
-
     # need to check for null
     bus = 0
     if not args:
@@ -105,7 +108,6 @@ def printStudent(args, data):
 
 
 def printTeacher(args, data):
-
     if not args:
         return
 
@@ -191,6 +193,23 @@ def printGrade(args, data):
 # provided in command) and the average GPA score computed.
 # ###########################################################################################
 
+def printAverage(args, data):
+    if not args:
+        return
+    
+    grade = args[0].strip()
+
+    students = []
+    for i in range(len(data)):
+        if (grade == data[i][GRADE]):
+            students.append(i)
+
+    ave = 0.0
+    for student in students:
+        ave = ave + data[student][GPA]
+    ave = ave / len(students)
+    print('Grade ' + grade + ': ' + ave)
+
 # I[nfo]
 # For each grade (from 0 to 6) compute the total number of students in that grade.
 # Report the number of students in each grade in the format
@@ -198,9 +217,25 @@ def printGrade(args, data):
 # sorted in ascending order by grade.
 # ###########################################################################################
 
-# # Q[uit]
-# ###########################################################################################
+def printInfo(args, data):
+    if args:
+        return
 
+    students = [0] * 6
+    for i in range(len(data)):
+        students[data[i][GRADE])] = students[data[i][GRADE]] + 1
+
+    for i in range(len(students)):
+        if (i == 0):
+            print('Kindergarden: ' + students[i])
+        elif (i == 1):
+            print('1st Grade: ' + students[i])
+        elif (i == 2):
+            print('2nd Grade: ' + students[i])
+        elif (i == 3):
+            print('3rd Grade: ' + students[i])
+        else:
+            print(i + 'th Grade: ' + students[i])
 
 if __name__ == '__main__':
     main()
