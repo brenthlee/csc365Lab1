@@ -215,7 +215,6 @@ def printAverage(args, data):
 
     ave = 0.0
     if (len(students) == 0):
-        print('There are no students in grade ' + str(grade))
         return
     for student in students:
         ave = ave + round(float(data[student][GPA]),2)
