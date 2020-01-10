@@ -2,6 +2,8 @@
 # Ryan Nevils
 # Brent Lee
 
+import os
+
 LNAME = 0
 FNAME = 1
 GRADE = 2
@@ -51,9 +53,13 @@ def parse_command(inpt, data):
 
 
 def main():
-    with open("students.txt") as f:
-        data_list = [[val.strip() for val in r.split(",")]
-                     for r in f.readlines()]
+    if os.path.isfile("students.txt"):
+        with open("students.txt") as f:
+            data_list = [[val.strip() for val in r.split(",")]
+                        for r in f.readlines()]
+    else:
+        print("File 'students.txt' not found in current directory")
+        return
 
     # for row in data_list:
     #     key, *values = row
