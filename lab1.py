@@ -79,7 +79,6 @@ def printStudent(args, data):
         return
 
     checkbus = args[0].split()
-    print(checkbus)
 
     if (len(checkbus) > 1 and (checkbus[1] == 'B' or checkbus[1] == 'Bus')):
         bus = 1
