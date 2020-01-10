@@ -1,0 +1,109 @@
+Script started on 2020-01-10 12:12:25-0800
+> S: HAVIR
+HAVIR,BOBBIE,2,108,HAMER,GAVIN
+> Student: HAVIR
+HAVIR,BOBBIE,2,108,HAMER,GAVIN
+> S: HAVIR B
+HAVIR,BOBBIE,0
+> Student: HAVIR B
+HAVIR,BOBBIE,0
+> S: HAVIR Bus
+HAVIR,BOBBIE,0
+> Student: HAVIR Bus
+HAVIR,BOBBIE,0
+> S: NEMO
+> Student: NEMO
+> S: NEMO B
+> Student: NEMO B
+> S: NEMO Bus
+> Student: NEMO Bus
+> T: FAFARD
+COOKUS,XUAN
+ELHADDAD,SHANTE
+SWEDLUND,SHARRI
+CIGANEK,MANIE
+COVINGTON,TOMAS
+EARLY,TORY
+LINHART,LELA
+> Teacher: FAFARD
+COOKUS,XUAN
+ELHADDAD,SHANTE
+SWEDLUND,SHARRI
+CIGANEK,MANIE
+COVINGTON,TOMAS
+EARLY,TORY
+LINHART,LELA
+> T: PUFF
+> Teacher: PUFF
+> G: 1
+> Grade: 1
+> G: 10
+> Grade: 10
+> G: 1 H
+GARTH,JOHN
+> Grade: 1 H
+GARTH,JOHN
+> G: 10 H
+COOKUS,XUAN
+> Grade: 10 H
+COOKUS,XUAN
+> G: 1 High
+> Grade: 1 High
+> G: 10 High
+> Grade: 10 High
+> G: 1 L
+SAELEE,DANILO
+> Grade: 1 L
+SAELEE,DANILO
+> G: 10 L
+COOKUS,XUAN
+> Grade: 10 L
+COOKUS,XUAN
+> G: 1 Low
+> Grade: 1 Low
+> G: 10 Low
+> Grade: 10 Low
+> B: 52
+XUAN,COOKUS,3,107
+SHANTE,ELHADDAD,3,107
+DEVIN,IMMERMAN,4,105
+STAN,OBREIN,6,111
+DIMPLE,CORONADO,6,102
+DIEDRA,SARAO,2,108
+TORY,EARLY,3,107
+ROSETTA,KEMERER,6,102
+> Bus: 52
+XUAN,COOKUS,3,107
+SHANTE,ELHADDAD,3,107
+DEVIN,IMMERMAN,4,105
+STAN,OBREIN,6,111
+DIMPLE,CORONADO,6,102
+DIEDRA,SARAO,2,108
+TORY,EARLY,3,107
+ROSETTA,KEMERER,6,102
+> B: 1000
+> Bus: 1000
+> A: 1
+Grade 1: 3.0
+> Average: 1
+Grade 1: 3.0
+> A: 10
+> Average: 10
+> S:
+> T:
+> A:
+> G:
+Traceback (most recent call last):
+  File "lab1.py", line 252, in <module>
+    main()
+  File "lab1.py", line 70, in main
+    parse_command(inpt, data_list)
+  File "lab1.py", line 46, in parse_command
+    printGrade(args, data)
+  File "lab1.py", line 162, in printGrade
+    grade = args[0].split()[0].strip()
+IndexError: list index out of range
+]0;tenzin@tenzin: ~/Documents/csc365Lab1[01;32mtenzin@tenzin[00m:[01;34m~/Documents/csc365Lab1[00m$ exit
+exit
+
+Script done on 2020-01-10 12:18:19-0800
