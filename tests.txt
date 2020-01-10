@@ -1,0 +1,144 @@
+// CSC 365. Winter 2020
+// Lab 1-1 test suite
+
+// TC-1
+// Tests Requirements R3, R4
+// short form command name, existing student
+// expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+
+S: HAVIR
+
+// TC-2
+// Tests Requirements R3, R4
+// long form command name, existing student
+// expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+
+Student: HAVIR
+
+// TC-3
+// Tests Requirements R3, R4
+// short form command name, non-existing student
+// expected output: <empty line>
+
+S: NEMO
+
+// TC-4
+// Tests Requirements R3, R4
+// long form command name, non-existing student
+// expected output: <empty line>
+
+Student: NEMO
+
+// TC-5
+// Tests Requirements R3, R4
+// short form command name, existing student, with short bus command
+// expected output: HAVIR,BOBBIE,0
+
+S: HAVIR B
+
+// TC-6
+// Tests Requirements R3, R4
+// short form command name, existing student, with long bus command
+// expected output: HAVIR,BOBBIE,0
+
+Student: HAVIR B
+
+// TC-6
+// Tests Requirements R3, R4
+// short form command name, existing student, with long bus command
+// expected output: HAVIR,BOBBIE,0
+
+S: NEMO B
+
+// TC-7
+// Tests Requirements R3, R4
+// short form command name, existing student, with long bus command
+// expected output: HAVIR,BOBBIE,0
+
+
+//tests
+S: HAVIR
+Student: HAVIR
+S: HAVIR B
+Student: HAVIR B
+S: HAVIR Bus
+Student: HAVIR Bus
+
+S: NEMO
+Student: NEMO
+S: NEMO B
+Student: NEMO B
+S: NEMO Bus
+Student: NEMO Bus
+
+
+T: FAFARD
+Teacher: FAFARD
+T: PUFF
+Teacher: PUFF
+
+
+G: 1
+Grade: 1
+G: 10
+Grade: 10
+
+G: 1 H
+Grade: 1 H
+G: 10 H
+Grade: 10 H
+
+G: 1 High
+Grade: 1 High
+G: 10 High
+Grade: 10 High
+
+G: 1 L
+Grade: 1 L
+G: 10 L
+Grade: 10 L
+
+G: 1 Low
+Grade: 1 Low
+G: 10 Low
+Grade: 10 Low
+
+B: 52
+Bus: 52
+
+B: 1000
+Bus: 1000
+
+A: 1
+Average: 1
+A: 10
+Average: 10
+
+
+
+
+// Error checks
+S:
+Student:
+T:
+Teacher:
+A:
+Average:
+G:
+Grade:
+B:
+Bus:
+
+asdf asdf
+10
+:
+
+
+
+
+// TC-4
+// Tests Requirments R3, R13
+// quit command
+// expected output: program terminates
+
+Q
