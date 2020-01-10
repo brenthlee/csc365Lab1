@@ -1,4 +1,4 @@
-Script started on 2020-01-10 12:12:25-0800
+Script started, file is tests.out
 > S: HAVIR
 HAVIR,BOBBIE,2,108,HAMER,GAVIN
 > Student: HAVIR
@@ -48,9 +48,13 @@ COOKUS,XUAN
 > Grade: 10 H
 COOKUS,XUAN
 > G: 1 High
+GARTH,JOHN
 > Grade: 1 High
+GARTH,JOHN
 > G: 10 High
+COOKUS,XUAN
 > Grade: 10 High
+COOKUS,XUAN
 > G: 1 L
 SAELEE,DANILO
 > Grade: 1 L
@@ -60,9 +64,13 @@ COOKUS,XUAN
 > Grade: 10 L
 COOKUS,XUAN
 > G: 1 Low
+SAELEE,DANILO
 > Grade: 1 Low
+SAELEE,DANILO
 > G: 10 Low
+COOKUS,XUAN
 > Grade: 10 Low
+COOKUS,XUAN
 > B: 52
 XUAN,COOKUS,3,107
 SHANTE,ELHADDAD,3,107
@@ -93,17 +101,11 @@ Grade 1: 3.0
 > T:
 > A:
 > G:
-Traceback (most recent call last):
-  File "lab1.py", line 252, in <module>
-    main()
-  File "lab1.py", line 70, in main
-    parse_command(inpt, data_list)
-  File "lab1.py", line 46, in parse_command
-    printGrade(args, data)
-  File "lab1.py", line 162, in printGrade
-    grade = args[0].split()[0].strip()
-IndexError: list index out of range
-]0;tenzin@tenzin: ~/Documents/csc365Lab1[01;32mtenzin@tenzin[00m:[01;34m~/Documents/csc365Lab1[00m$ exit
-exit
-
-Script done on 2020-01-10 12:18:19-0800
+> B:
+> asdf asdf
+not a valid command!
+> 10
+not a valid command!
+> :
+not a valid command!
+Script done, file is tests.out
