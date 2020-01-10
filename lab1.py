@@ -164,38 +164,45 @@ def printGrade(args, data):
     else:
         return
 
-    if (len(args[0].split()) > 1):
-        sort = args[0].split()[1].strip()
-    else:
-        return
-
     students = []
     for i in range(len(data)):
         if (grade == data[i][GRADE]):
             students.append(i)
 
-    if (sort == "H" or sort == "High"):
-        max = 0.0
-        maxStudent = 0
+    if (len(args[0].split()) > 1):
+        sort = args[0].split()[1].strip()
 
+        if (sort == "H" or sort == "High"):
+            max = 0.0
+            maxStudent = 0
+
+            for student in students:
+                if (float(data[student][GPA]) > float(max)):
+                    max = float(data[student][GPA])
+                    maxStudent = student
+
+            print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]))
+
+
+        elif (sort == "L" or sort == "Low"):
+            min = 4.0
+            minStudent = 0
+
+            for student in students:
+                if (float(data[student][GPA]) < float(min)):
+                    min = float(data[student][GPA])
+                    minStudent = student
+
+            print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]))
+
+    else:
         for student in students:
-            if (float(data[student][GPA]) > float(max)):
-                max = float(data[student][GPA])
-                maxStudent = student
-
-        print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]))
+            print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]))
 
 
-    elif (sort == "L" or sort == "Low"):
-        min = 4.0
-        minStudent = 0
+    
 
-        for student in students:
-            if (float(data[student][GPA]) < float(min)):
-                min = float(data[student][GPA])
-                minStudent = student
-
-        print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]))
+    
 # ###########################################################################################
 
 # A[verage]: <number>
