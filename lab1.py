@@ -168,6 +168,8 @@ def printGrade(args, data):
     for i in range(len(data)):
         if (grade == data[i][GRADE]):
             students.append(i)
+    if (len(students) == 0):
+        return
 
     if (len(args[0].split()) > 1):
         sort = args[0].split()[1].strip()
@@ -175,13 +177,13 @@ def printGrade(args, data):
         if (sort == "H" or sort == "High"):
             max = 0.0
             maxStudent = 0
-
+            
             for student in students:
                 if (float(data[student][GPA]) > float(max)):
                     max = float(data[student][GPA])
                     maxStudent = student
 
-            print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]))
+            print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]) + ',' + str(data[maxStudent][BUS]) + ',' + str(data[maxStudent][GPA]) + ',' + str(data[maxStudent][TLNAME]) + ',' + str(data[maxStudent][TFNAME]))
 
 
         elif (sort == "L" or sort == "Low"):
@@ -193,7 +195,7 @@ def printGrade(args, data):
                     min = float(data[student][GPA])
                     minStudent = student
 
-            print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]))
+            print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]) + ',' + str(data[minStudent][BUS]) + ',' + str(data[minStudent][GPA]) + ',' + str(data[minStudent][TLNAME]) + ',' + str(data[minStudent][TFNAME]))
 
     else:
         for student in students:
