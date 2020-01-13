@@ -1,0 +1,397 @@
+// CSC 365. Winter 2020
+// Lab 1-1 test suite
+
+// TC-1
+// Tests Requirements R3, R4
+// short form command name, existing student
+// expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+
+S: HAVIR
+
+// TC-2
+// Tests Requirements R3, R4
+// long form command name, existing student
+// expected output: HAVIR,BOBBIE,2,108,HAMER,GAVIN
+
+Student: HAVIR
+
+// TC-3
+// Tests Requirements R3, R5
+// short form command name, existing student, with short bus command
+// expected output: HAVIR,BOBBIE,0
+
+S: HAVIR B
+
+// TC-4
+// Tests Requirements R3, R5
+// long form command name, existing student, with short bus command
+// expected output: HAVIR,BOBBIE,0
+
+Student: HAVIR B
+
+// TC-5
+// Tests Requirements R3, R5
+// short form command name, existing student, with long bus command
+// expected output: HAVIR,BOBBIE,0
+
+S: HAVIR Bus
+
+// TC-6
+// Tests Requirements R3, R5
+// long form command name, existing student, with long bus command
+// expected output: HAVIR,BOBBIE,0
+
+Student: HAVIR Bus
+
+// TC-7
+// Tests Requirements R3, R4
+// short form command name, non-existing student
+// expected output: <empty line>
+
+S: NEMO
+
+// TC-8
+// Tests Requirements R3, R4
+// long form command name, non-existing student
+// expected output: <empty line>
+
+Student: NEMO
+
+// TC-7
+// Tests Requirements R3, R5
+// short form command name, non-existing student, with short bus command
+// expected output: <empty line>
+
+S: NEMO B
+
+// TC-8
+// Tests Requirements R3, R5
+// short form command name, non-existing student, with short bus command
+// expected output: <empty line>
+
+Student: NEMO B
+
+// TC-9
+// Tests Requirements R3, R5
+// short form command name, non-existing student, with long bus command
+// expected output: <empty line>
+
+S: NEMO Bus
+
+// TC-10
+// Tests Requirements R3, R5
+// short form command name, non-existing student, with long bus command
+// expected output: <empty line>
+
+Student: NEMO Bus
+
+// TC-11
+// Tests Requirements R3, R6
+// short form command name, existing teacher
+// expected output: COOKUS,XUAN
+//                  ELHADDAD,SHANTE
+//                  SWEDLUND,SHARRI
+//                  CIGANEK,MANIE
+//                  COVINGTON,TOMAS
+//                  EARLY,TORY
+//                  LINHART,LELA
+
+T: FAFARD
+
+// TC-12
+// Tests Requirements R3, R6
+// long form command name, existing teacher
+// expected output: COOKUS,XUAN
+//                  ELHADDAD,SHANTE
+//                  SWEDLUND,SHARRI
+//                  CIGANEK,MANIE
+//                  COVINGTON,TOMAS
+//                  EARLY,TORY
+//                  LINHART,LELA
+
+Teacher: FAFARD
+
+// TC-13
+// Tests Requirements R3, R6
+// short form command name, non-existing teacher
+// expected output: <empty line>
+
+T: PUFF
+
+// TC-14
+// Tests Requirements R3, R6
+// long form command name, non-existing teacher
+// expected output: <empty line>
+
+Teacher: PUFF
+
+// TC-15
+// Tests Requirements R3, R9
+// short form command name, existing grade, short high
+// expected output: GARTH,JOHN
+
+G: 1 H
+
+// TC-16
+// Tests Requirements R3, R9
+// long form command name, existing grade, short high
+// expected output: GARTH,JOHN
+
+Grade: 1 H
+
+// TC-17
+// Tests Requirements R3, R9
+// short form command name, non-existing grade, short high
+// expected output: <empty line>
+
+G: 10 H
+
+// TC-18
+// Tests Requirements R3, R9
+// long form command name, non-existing grade, short high
+// expected output: <empty line>
+
+Grade: 10 H
+
+// TC-19
+// Tests Requirements R3, R9
+// short form command name, existing grade, long high
+// expected output: GARTH,JOHN
+
+G: 1 High
+
+// TC-20
+// Tests Requirements R3, R9
+// long form command name, existing grade, long high
+// expected output: GARTH,JOHN
+
+Grade: 1 High
+
+// TC-21
+// Tests Requirements R3, R9
+// short form command name, non-existing grade, long high
+// expected output: <empty line>
+
+G: 10 High
+
+// TC-22
+// Tests Requirements R3, R9
+// long form command name, non-existing grade, long high
+// expected output: <empty line>
+
+Grade: 10 High
+
+// TC-23
+// Tests Requirements R3, R9
+// short form command name, existing grade, short Low
+// expected output: SAELEE,DANILO
+
+G: 1 L
+
+// TC-24
+// Tests Requirements R3, R9
+// long form command name, existing grade, short Low
+// expected output: SAELEE,DANILO
+
+Grade: 1 L
+
+// TC-25
+// Tests Requirements R3, R9
+// short form command name, non-existing grade, short Low
+// expected output: <empty line>
+
+G: 10 L
+
+// TC-26
+// Tests Requirements R3, R9
+// long form command name, non-existing grade, short Low
+// expected output: <empty line>
+
+Grade: 10 L
+
+// TC-27
+// Tests Requirements R3, R9
+// short form command name, existing grade, long Low
+// expected output: SAELEE,DANILO
+
+G: 1 Low
+
+// TC-28
+// Tests Requirements R3, R9
+// long form command name, existing grade, long Low
+// expected output: SAELEE,DANILO
+
+Grade: 1 Low
+
+// TC-29
+// Tests Requirements R3, R9
+// short form command name, non-existing grade, long Low
+// expected output: <empty line>
+
+G: 10 Low
+
+// TC-30
+// Tests Requirements R3, R9
+// long form command name, non-existing grade, long Low
+// expected output: <empty line>
+
+Grade: 10 Low
+
+// TC-31
+// Tests Requirements R3, R7
+// short form command name, existing grade
+// expected output: SAELEE,DANILO
+//                  GARTH,JOHN
+
+G: 1
+
+// TC-32
+// Tests Requirements R3, R7
+// long form command name, existing grade
+// expected output: SAELEE,DANILO
+//                  GARTH,JOHN
+
+Grade: 1
+
+// TC-33
+// Tests Requirements R3, R7
+// short form command name, non-existing grade
+// expected output: <empty line>
+
+G: 10
+
+// TC-34
+// Tests Requirements R3, R7
+// long form command name, non-existing grade
+// expected output: <empty line>
+
+Grade: 10
+
+// TC-35
+// Tests Requirements R3, R8
+// short form command name, existing bus
+// expected output: XUAN,COOKUS,3,107
+//                  SHANTE,ELHADDAD,3,107
+//                  DEVIN,IMMERMAN,4,105
+//                  STAN,OBREIN,6,111
+//                  DIMPLE,CORONADO,6,102
+//                  DIEDRA,SARAO,2,108
+//                  TORY,EARLY,3,107
+//                  ROSETTA,KEMERER,6,102
+
+B: 52
+
+// TC-36
+// Tests Requirements R3, R8
+// long form command name, existing bus
+// expected output: XUAN,COOKUS,3,107
+//                  SHANTE,ELHADDAD,3,107
+//                  DEVIN,IMMERMAN,4,105
+//                  STAN,OBREIN,6,111
+//                  DIMPLE,CORONADO,6,102
+//                  DIEDRA,SARAO,2,108
+//                  TORY,EARLY,3,107
+//                  ROSETTA,KEMERER,6,102
+
+Bus: 52
+
+// TC-37
+// Tests Requirements R3, R8
+// short form command name, existing bus
+// expected output: <empty line>
+
+B: 1000
+
+// TC-38
+// Tests Requirements R3, R8
+// long form command name, existing bus
+// expected output: <empty line>
+
+Bus: 1000
+
+
+
+
+// TC-39
+// Tests Requirements R3, R10
+// short form command name, existing grade
+// expected output: Grade 1: 3.0
+
+A: 1
+
+
+// TC-40
+// Tests Requirements R3, R10
+// long form command name, existing grade
+// expected output: Grade 1: 3.0
+
+Average: 1
+
+// TC-41
+// Tests Requirements R3, R10
+// short form command name, non-existing grade
+// expected output: <empty line>
+
+A: 10
+
+
+// TC-42
+// Tests Requirements R3, R10
+// long form command name, non-existing grade
+// expected output: <empty line>
+
+Average: 10
+
+// TC-43
+// Tests Requirements E1
+// invalid command, mutltiple words
+// expected output: not a valid command!
+
+asdf asdf
+
+// TC-44
+// Tests Requirements E1
+// invalid command, number
+// expected output: not a valid command!
+
+10
+
+// TC-45
+// Tests Requirements E1
+// invalid command, semicoln
+// expected output: not a valid command!
+
+:
+
+// TC-46
+// Tests Requirements R3, R11
+// short form of command
+// expected output: Kindergarden: 0
+//          1st Grade: 2
+//          2nd Grade: 13
+//          3rd Grade: 9
+//          4th Grade: 15
+//          5th Grade: 0
+//          6th Grade: 21
+
+I
+
+// TC-47
+// Tests Requirements R3, R11
+// long form of command
+// expected output: Kindergarden: 0
+//          1st Grade: 2
+//          2nd Grade: 13
+//          3rd Grade: 9
+//          4th Grade: 15
+//          5th Grade: 0
+//          6th Grade: 21
+
+Info
+
+// TC-48
+// Tests Requirments R3, R13
+// quit command
+// expected output: program terminates
+
+Q
