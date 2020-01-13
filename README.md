@@ -21,4 +21,4 @@ Contributors: **Brent Lee, Henry Luengas, Ryan Nevils**
 
     * The input is left justified without any indentation
 
-    * The output is indented
+    * The output is left justified and is indented
