@@ -1,10 +1,10 @@
 #Brent Lee, Henry Luengas, Ryan Nevils
 
 run:
-	@python3 lab1.py
+	@python3 schoolsearch.py
 
 test:
-	@python3 lab1.py < commands
+	@python3 schoolsearch.py < commands
 
 studs:
 	@mv students.txt studs.txt
