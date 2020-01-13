@@ -108,12 +108,23 @@ Grade 1: 3.0
 > A: 10
 > Average: 10
 
+> I
+Kindergarden: 0
+1st Grade: 2
+2nd Grade: 13
+3rd Grade: 9
+4th Grade: 15
+5th Grade: 0
+6th Grade: 21
+> Info
+Kindergarden: 0
+1st Grade: 2
+2nd Grade: 13
+3rd Grade: 9
+4th Grade: 15
+5th Grade: 0
+6th Grade: 21
 
-> S:
-> T:
-> A:
-> G:
-> B:
 > asdf asdf
 not a valid command!
 > 10
@@ -121,5 +132,6 @@ not a valid command!
 > :
 not a valid command!
 > Q
+
 
 Script done, file is tests.out
