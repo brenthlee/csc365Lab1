@@ -1,4 +1,5 @@
 // CSC 365. Winter 2020
+// Brent Lee, Henry Luengas, Ryan Nevils
 // Lab 1-1 test suite
 
 // TC-1
