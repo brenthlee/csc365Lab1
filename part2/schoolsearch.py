@@ -4,20 +4,26 @@
 
 import os
 
+#arrayValues for data
 LNAME = 0
 FNAME = 1
 GRADE = 2
 CLSSRM = 3
 BUS = 4
 GPA = 5
-# TLNAME = 6
-# TFNAME = 7
+
+#arrayValues for teacherData
+TLNAME = 0
+TFNAME = 1
+TCLSSRM = 2
 
 legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
-                 'Bus', 'G', 'Grade', 'A', 'Average', 'I', 'Info', 'Q', 'Quit']
+                 'Bus', 'G', 'Grade', 'A', 'Average', 'I', 'Info', 'Q', 'Quit',
+                 'SC', 'StudentClass', 'TC', 'TeacherClass',
+                 'TG', 'TeacherGrade', 'E', 'Enrollment']
 
 
-def parse_command(inpt, data, teacherDict):
+def parse_command(inpt, data, teacherData):
     # figure out what command it is, then run appropriate command
     # S[tudent]:  <lastname> [B[us]]
     # T[eacher]:  <lastname>
@@ -25,6 +31,10 @@ def parse_command(inpt, data, teacherDict):
     # G[rade]:  <number> [H[igh]|L[ow]]
     # A[verage]:  <number>
     # I[nfo]
+    # SC/StudentClass: <number>
+    # TC/TeacherClass: <number>
+    # TG/TeacherGrade: <number>
+    # E[nrollment]
     # Q[uit]
 
     command, *args = inpt.split(':')
@@ -34,22 +44,34 @@ def parse_command(inpt, data, teacherDict):
         return
 
     if (command == 'S' or command == 'Student'):
-        printStudent(args, data, teacherDict)
+        printStudent(args, data, teacherData)
 
     elif (command == 'T' or command == 'Teacher'):
-        printTeacher(args, data, teacherDict)
+        printTeacher(args, data, teacherData)
 
     elif (command == 'B' or command == 'Bus'):
-        printBus(args, data, teacherDict)
+        printBus(args, data)
 
     elif (command == 'G' or command == 'Grade'):
-        printGrade(args, data, teacherDict)
+        printGrade(args, data, teacherData)
 
     elif (command == 'A' or command == 'Average'):
-        printAverage(args, data, teacherDict)
+        printAverage(args, data)
 
     elif (command == 'I' or command == 'Info'):
-        printInfo(args, data, teacherDict)
+        printInfo(args, data)
+
+    elif (command == 'SC' or command == 'StudentClass'):
+        printStudentClass(args, data)
+
+    elif (command == 'TC' or command == 'TeacherClass'):
+        printTeacherClass(args, teacherData)
+
+    elif (command == 'TG' or command == 'TeacherGrade'):
+        printTeacherGrade(args, data, teacherData)
+
+    elif (command == 'E' or command == 'Enrollment'):
+        printEnrollment(args, data)
 
 
 def main():
@@ -69,24 +91,25 @@ def main():
         print("File 'teachers.txt' not found in current directory")
         return
 
-    teacherDict = {}
-    for teacher in teacher_data_list:
-        teacherDict.update({int(teacher[2]): [teacher[0], teacher[1]]})
+#    teacherDict = {}
+#    for teacher in teacher_data_list:
+#        teacherDict.update({int(teacher[2]): [teacher[0], teacher[1]]})
 
     inpt = input("> ")
     while (inpt != 'Q' and inpt != 'Quit'):
-        parse_command(inpt, student_data_list, teacherDict)
+#        parse_command(inpt, student_data_list, teacherDict)
+        parse_command(inpt, student_data_list, teacher_data_list)
         inpt = input("> ")
     print("See you next time!")
 
 
 # S[tudent]: <lastname> [B[us]]
-# Search the contents of the students.txt file for the entry (or entries) for students with
+# Search for the entry (or entries) for students with
 # the given last name.
 # For each entry found, print the last name, first name, grade and classroom assignment for
 # each student found and the name of their teacher (last and first name).
 
-def printStudent(args, data, teacherDict):
+def printStudent(args, data, teacherData):
     # need to check for null
     bus = 0
     if not args:
@@ -110,45 +133,46 @@ def printStudent(args, data, teacherDict):
                   str(data[student][FNAME]) + ',' + str(data[student][BUS]))
     else:
         for student in students:
-            tlName = teacherDict.get(int(data[student][CLSSRM]))[0]
-            tfName = teacherDict.get(int(data[student][CLSSRM]))[1]
+            for i in range(len(teacherData)):
+                if (int(data[student][CLSSRM]) == int(teacherData[i][TCLSSRM])):
+                    print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]) + ',' + str(data[student][GRADE]) +
+                        ',' + str(data[student][CLSSRM]) + ',' + str(teacherData[i][TLNAME]) + ',' + str(teacherData[i][TFNAME]))
+                    break
 
-            print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]) + ',' + str(data[student][GRADE]) +
-                  ',' + str(data[student][CLSSRM]) + ',' + str(tlName) + ',' + str(tfName))
 # ###########################################################################################
 
 # T[eacher]: <lastname>
-# Search the contents of the students.txt file for the entry (or entries) for students with
+# Search for the entry (or entries) for students with
 # the given last name.
 # For each entry found, print the last name, first name and the bus route the student takes.
 
 
-def printTeacher(args, data, teacherDict):
+def printTeacher(args, data, teacherData):
     if not args:
         return
 
     tname = args[0].strip()
 
-    students = []
+    clss = -1
+    for i in range(len(teacherData)):
+        if (tname == teacherData[i][TLNAME]):
+            clss = teacherData[i][TCLSSRM]
+            break
+    if (clss == -1):
+        return
+    
     for i in range(len(data)):
-
-        tlName = teacherDict.get(int(data[i][CLSSRM]))[0]
-
-        if (tname == tlName):
-            students.append(i)
-
-    for student in students:
-        print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]))
+            if (clss == data[i][CLSSRM]):
+                print(str(data[i][LNAME]) + ',' + str(data[i][FNAME]))
 # ###########################################################################################
 
 # B[us]: <number>
-# Search the contents of the students.txt file for the entries where the bus route number
+# Search for the entries where the bus route number
 # matches the number provided in the instruction.
 # For each such entry, output the first and the last name of the student and their grade and
 # classroom.
 
-
-def printBus(args, data, teacherDict):
+def printBus(args, data):
     if not args:
         return
 
@@ -157,20 +181,16 @@ def printBus(args, data, teacherDict):
     students = []
     for i in range(len(data)):
         if (busRoute == data[i][BUS]):
-            students.append(i)
-
-    for student in students:
-        print(str(data[student][FNAME]) + ',' + str(data[student][LNAME]) +
-              ',' + str(data[student][GRADE]) + ',' + str(data[student][CLSSRM]))
+            print(str(data[i][FNAME]) + ',' + str(data[i][LNAME]) +
+                ',' + str(data[i][GRADE]) + ',' + str(data[i][CLSSRM]))
 # ###########################################################################################
 
 # G[rade]: <number> [H[igh]|L[ow]]
-# Search the contents of the students.txt file for the entries where the student’s grade
+# Search for the entries where the student’s grade
 # matches the number provided in the instruction.
 # For each entry, output the name (last and first) of the student.
 
-
-def printGrade(args, data, teacherDict):
+def printGrade(args, data, teacherData):
     if not args:
         return
 
@@ -190,40 +210,36 @@ def printGrade(args, data, teacherDict):
         sort = args[0].split()[1].strip()
 
         if (sort == "H" or sort == "High"):
-            max = 0.0
+            max = -1.0
             maxStudent = 0
-
+            maxClass = -1
             for student in students:
                 if (float(data[student][GPA]) > float(max)):
                     max = float(data[student][GPA])
                     maxStudent = student
-
-            tlName = teacherDict.get(int(data[student][CLSSRM]))[0]
-            tfName = teacherDict.get(int(data[student][CLSSRM]))[1]
-
-            print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]) + ',' + str(data[maxStudent][BUS]) +
-                  ',' + str(data[maxStudent][GPA]) + ',' + str(tlName) + ',' + str(tfName))
+                    maxClass = data[student][CLSSRM]
+            for i in range(len(teacherData)):
+                if (teacherData[i][TCLSSRM] == maxClass):
+                    print(str(data[maxStudent][LNAME]) + ',' + str(data[maxStudent][FNAME]) + ',' + str(data[maxStudent][BUS]) +
+                        ',' + str(data[maxStudent][GPA]) + ',' + str(teacherData[i][TLNAME]) + ',' + str(teacherData[i][TFNAME]))
+                    break
 
         elif (sort == "L" or sort == "Low"):
-            min = 4.0
+            min = 5.0
             minStudent = 0
-
+            minClass = -1
             for student in students:
                 if (float(data[student][GPA]) < float(min)):
                     min = float(data[student][GPA])
                     minStudent = student
-
-            tlName = teacherDict.get(int(data[student][CLSSRM]))[0]
-            tfName = teacherDict.get(int(data[student][CLSSRM]))[1]
-
-            print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]) + ',' + str(data[minStudent][BUS]) +
-                  ',' + str(data[minStudent][GPA]) + ',' + str(tlName) + ',' + str(tfName))
-
+                    minClass = data[student][CLSSRM]
+            for i in range(len(teacherData)):
+                if (teacherData[i][TCLSSRM] == minClass):
+                    print(str(data[minStudent][LNAME]) + ',' + str(data[minStudent][FNAME]) + ',' + str(data[minStudent][BUS]) +
+                        ',' + str(data[minStudent][GPA]) + ',' + str(teacherData[i][TLNAME]) + ',' + str(teacherData[i][TFNAME]))
     else:
         for student in students:
             print(str(data[student][LNAME]) + ',' + str(data[student][FNAME]))
-
-
 # ###########################################################################################
 
 # A[verage]: <number>
@@ -233,17 +249,14 @@ def printGrade(args, data, teacherDict):
 # provided in command) and the average GPA score computed.
 # ###########################################################################################
 
-def printAverage(args, data, teacherDict):
+def printAverage(args, data):
     if not args:
         return
-
     grade = args[0].strip()
-
     students = []
     for i in range(len(data)):
         if (grade == data[i][GRADE]):
             students.append(i)
-
     ave = 0.0
     if (len(students) == 0):
         return
@@ -251,7 +264,6 @@ def printAverage(args, data, teacherDict):
         ave = ave + round(float(data[student][GPA]), 2)
     ave = ave / len(students)
     print('Grade ' + str(grade) + ': ' + str(round(ave, 2)))
-
 # I[nfo]
 # For each grade (from 0 to 6) compute the total number of students in that grade.
 # Report the number of students in each grade in the format
@@ -259,8 +271,7 @@ def printAverage(args, data, teacherDict):
 # sorted in ascending order by grade.
 # ###########################################################################################
 
-
-def printInfo(args, data, teacherDict):
+def printInfo(args, data):
     if args:
         return
 
@@ -279,6 +290,61 @@ def printInfo(args, data, teacherDict):
             print('3rd Grade: ' + str(students[i]))
         else:
             print(str(i) + 'th Grade: ' + str(students[i]))
+# SC/StudentClass
+# Given a classroom number, list all students assigned to it
+# ###########################################################################################
+
+def printStudentClass(args, data):
+    if not args:
+        return
+    classroom = args[0].strip()
+    for i in range(len(data)):
+        if (int(data[i][CLSSRM]) == int(classroom)):
+            print(str(data[i][LNAME]) + "," + str(data[i][FNAME]))
+# TC/TeacherClass
+# Given a classroom number, find the teacher (or teachers) teaching in it
+# ###########################################################################################
+
+def printTeacherClass(args, teacherData):
+    if not args:
+        return
+    classroom = args[0].strip()
+    for i in range(len(teacherData)):
+        if (int(teacherData[i][TCLSSRM]) == int(classroom)):
+            print(str(teacherData[i][TLNAME]) + "," + str(teacherData[i][TFNAME]))
+# TG/TeacherGrade
+# Given a grade, find all teachers who teach it
+# ###########################################################################################
+
+def printTeacherGrade(args, data, teacherData):
+    if not args:
+        return
+    grade = args[0].strip()
+    classes = []
+    for i in range(len(data)):
+        if (int(data[i][GRADE]) == int(grade) and (int(data[i][CLSSRM]) not in classes)):
+            classes.append(int(data[i][CLSSRM]))
+    for clss in classes:
+        for i in range(len(teacherData)):
+            if (int(teacherData[i][TCLSSRM]) == int(clss)):
+                print(str(teacherData[i][TLNAME]) + "," + str(teacherData[i][TFNAME]))
+                break
+# E[nrollment]
+# Output a list of classrooms ordered by classroom number, with a total number
+# of students in each of the classrooms
+# ###########################################################################################
+
+def printEnrollment(args, data):
+    if args:
+        return
+    classes = {}
+    for i in range(len(data)):
+        classes.update({int(data[i][CLSSRM]) : (int(classes.get(int(data[i][CLSSRM]), 0)) + 1)})
+    li = list(classes.items())
+    li.sort()
+    for i in li:
+        print("Class " + str(i[0]) + " has " + str(i[1]) + 
+            (" student" if (int(i[1]) == 1) else " students"))
 
 
 if __name__ == '__main__':
