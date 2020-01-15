@@ -20,7 +20,7 @@ TCLSSRM = 2
 legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
                  'Bus', 'G', 'Grade', 'A', 'Average', 'I', 'Info', 'Q', 'Quit',
                  'SC', 'StudentClass', 'TC', 'TeacherClass',
-                 'TG', 'TeacherGrade', 'E', 'Enrollment']
+                 'TG', 'TeacherGrade', 'E', 'Enrollment', 'TGPA', 'TeacherGPA']
 
 
 def parse_command(inpt, data, teacherData):
@@ -72,6 +72,9 @@ def parse_command(inpt, data, teacherData):
 
     elif (command == 'E' or command == 'Enrollment'):
         printEnrollment(args, data)
+
+    elif (command == 'TGPA' or command == 'TeacherGPA'):
+        printTeacherGPA(args, data, teacherData)
 
 
 def main():
@@ -345,6 +348,29 @@ def printEnrollment(args, data):
     for i in li:
         print("Class " + str(i[0]) + " has " + str(i[1]) + 
             (" student" if (int(i[1]) == 1) else " students"))
+
+def printTeacherGPA(args, data, teacherData):
+    if not args:
+        return
+    if not args[0]:
+        for teacher in teacherData:
+            print(str(teacher[0]), str(teacher[1]))
+            printTeacherGPA(teacher, data, teacherData)
+    else:
+
+        tname = args[0].strip()
+
+        clss = -1
+        for i in range(len(teacherData)):
+            if (tname == teacherData[i][TLNAME]):
+                clss = teacherData[i][TCLSSRM]
+                break
+        if (clss == -1):
+            return
+        
+        for i in range(len(data)):
+                if (clss == data[i][CLSSRM]):
+                    print(str(data[i][GPA]))
 
 
 if __name__ == '__main__':
