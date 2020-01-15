@@ -15,6 +15,18 @@ Contributors: **Brent Lee, Henry Luengas, Ryan Nevils**
 
 ---
 
+## New commands for part2:
+
+    1. SC/StudentClass - Given a classroom number, list all students assigned to it
+
+    2. TC/TeacherClass - Given a classroom number, find the teacher (or teachers) teaching in it
+
+    3. TG/TeacherGrade - Given a grade, find all teachers who teach it
+
+    4. E[nrollment] - Report a list of classrooms ordered by classroom number, with a total number of students in each of the classrooms
+
+---
+
 ## Testing input/output: ##
 
     * It is in tests.txt
