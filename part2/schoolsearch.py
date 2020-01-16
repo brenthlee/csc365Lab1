@@ -20,7 +20,8 @@ TCLSSRM = 2
 legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
                  'Bus', 'G', 'Grade', 'A', 'Average', 'I', 'Info', 'Q', 'Quit',
                  'SC', 'StudentClass', 'TC', 'TeacherClass',
-                 'TG', 'TeacherGrade', 'E', 'Enrollment', 'TGPA', 'TeacherGPA']
+                 'TG', 'TeacherGrade', 'E', 'Enrollment', 'TGPA', 'TeacherGPA',
+                 'GGPA', 'GradeGPA']
 
 
 def parse_command(inpt, data, teacherData):
@@ -35,6 +36,8 @@ def parse_command(inpt, data, teacherData):
     # TC/TeacherClass: <number>
     # TG/TeacherGrade: <number>
     # E[nrollment]
+    # TGPA/TeacherGPA: [<lastname>]
+    # GGPA/GradeGPA: [<number>]
     # Q[uit]
 
     command, *args = inpt.split(':')
@@ -75,6 +78,9 @@ def parse_command(inpt, data, teacherData):
 
     elif (command == 'TGPA' or command == 'TeacherGPA'):
         printTeacherGPA(args, data, teacherData)
+
+    elif (command == 'GGPA' or command == 'GradeGPA'):
+        printGradeGPA(args, data)
 
 
 def main():
@@ -348,6 +354,10 @@ def printEnrollment(args, data):
     for i in li:
         print("Class " + str(i[0]) + " has " + str(i[1]) + 
             (" student" if (int(i[1]) == 1) else " students"))
+# TGPA/TeacherGPA
+# Given a teacher's last name, it outputs all of the students' GPA's in the teacher's class
+# Without an argument, it outputs all of the students' GPA's of all the teachers
+# ###########################################################################################
 
 def printTeacherGPA(args, data, teacherData):
     if not args:
@@ -371,7 +381,27 @@ def printTeacherGPA(args, data, teacherData):
         for i in range(len(data)):
                 if (clss == data[i][CLSSRM]):
                     print(str(data[i][GPA]))
+# GGPA/GradeGPA
+# Given a grade, it outputs all of the students' GPA's in that grade
+# Without an argument, it outputs all of the students' GPA's of all the grades
+# ###########################################################################################
 
+def printGradeGPA(args, data):
+    if not args:
+        return
+    if not args[0]:
+        grades = [[] for i in range(7)]
+        for i in range(len(data)):
+            grades[int(data[i][GRADE])].append(round(float(data[i][GPA]), 2))
+        for i in range(len(grades)):
+            print("Grade " + str(i) + ":")
+            for grade in grades[i]:
+                print(str(grade))
+    else:
+        grade = args[0].strip()
+        for i in range(len(data)):
+            if (grade == data[i][GRADE]):
+                print(str(data[i][GPA]))
 
 if __name__ == '__main__':
     main()
