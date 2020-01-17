@@ -21,7 +21,7 @@ legalCommands = ['S', 'Student', 'T', 'Teacher', 'B',
                  'Bus', 'G', 'Grade', 'A', 'Average', 'I', 'Info', 'Q', 'Quit',
                  'SC', 'StudentClass', 'TC', 'TeacherClass',
                  'TG', 'TeacherGrade', 'E', 'Enrollment', 'TGPA', 'TeacherGPA',
-                 'GGPA', 'GradeGPA']
+                 'GGPA', 'GradeGPA', 'BGPA', 'BusGPA']
 
 
 def parse_command(inpt, data, teacherData):
@@ -81,6 +81,9 @@ def parse_command(inpt, data, teacherData):
 
     elif (command == 'GGPA' or command == 'GradeGPA'):
         printGradeGPA(args, data)
+
+    elif (command == 'BGPA' or command == 'BusGPA'):
+        printBusGPA(args, data)
 
 
 def main():
@@ -401,6 +404,29 @@ def printGradeGPA(args, data):
         grade = args[0].strip()
         for i in range(len(data)):
             if (grade == data[i][GRADE]):
+                print(str(data[i][GPA]))
+
+
+# BGPA/BusGPA
+# Given a bus route, it outputs all of the students' GPA's in that route
+# Without an argument, it outputs all of the students' GPA's of all the grades
+# ###########################################################################################
+def printBusGPA(args, data):
+    if not args:
+        return
+    
+    if not args[0]:
+        buses = ['0', '51', '52', '53', '54', '55', '56']
+        for bus in buses:
+            print("Bus " + bus + ":")
+            for entry in data:
+                if (entry[BUS] == bus):
+                    print(entry[GPA])
+
+    else:
+        bus = args[0].strip()
+        for i in range(len(data)):
+            if (bus == data[i][BUS]):
                 print(str(data[i][GPA]))
 
 if __name__ == '__main__':
