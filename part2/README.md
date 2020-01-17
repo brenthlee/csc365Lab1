@@ -25,28 +25,25 @@ Contributors: **Brent Lee, Henry Luengas, Ryan Nevils**
 
     4. E[nrollment] - Report a list of classrooms ordered by classroom number, with a total number of students in each of the classrooms
 
-
-
     Analytics commands:
+    
+    * T[eacher]GPA [<lastname>]
+        
+        * With a lastname provided, then this command prints out every GPA of all students for every teacher
+        
+        * Given a teacher's last name, it outputs all of the students' GPA's in the teacher's class
+    
+    * G[rade]GPA: [<number>]
+        
+        * Without a number provided, then this command prints out every GPA of all students for every grades
 
-    B[us]GPA [Number]
-        if no bus number is provided, then this command prints out every GPA for all busses. Ex:
-                Bus 0:
-                3.15
-                2.81
-                3.11
-                2.88
-                2.8
-                3.14
-                2.88
-                2.85
-                Bus 51:
-                2.92
-                3.02
-                .
-                .
-                etc
-        if a bus number is provided, then it prints out all the GPAs for that bus number.
+        * Given a grade, it outputs all of the students' GPA's in that grade
+    
+    * B[us]GPA [<number>]
+        
+        * if no bus number is provided, then this command prints out every GPA of all students for every bus
+        
+        * if a bus number is provided, then it prints out all the GPAs for that bus number
 
 
 ---
